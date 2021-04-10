@@ -2,6 +2,7 @@ const multer = require("multer");
 const config = require("../../config");
 const path = require("path");
 const express = require("express");
+const {nanoid} = require("nanoid");
 const {registerUser, logOut, logIn} = require("../controllers/user.controller");
 const router = express.Router();
 
