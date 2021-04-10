@@ -20,6 +20,8 @@ const createRouter = () => {
     router.post('/', upload.single("avatar"), registerUser);
     router.post('/sessions', logIn);
     router.delete('/sessions', logOut);
+
+    return router;
 }
 
 module.exports = createRouter;
