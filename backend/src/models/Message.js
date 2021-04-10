@@ -13,8 +13,7 @@ const MessageSchema = new Schema({
         required: true
     },
     datetime: {
-        type: Date,
-        default: new Date().toISOString()
+        type: Date
     }
 });
 
