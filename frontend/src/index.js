@@ -3,13 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router} from "react-router-dom";
+import {ConnectedRouter} from 'connected-react-router';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-notifications/lib/notifications.css';
+import store, {history} from "./store/ConfigureStore";
+
+import {Provider} from "react-redux";
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
+    </Provider>
+,
   document.getElementById('root')
 );
 
