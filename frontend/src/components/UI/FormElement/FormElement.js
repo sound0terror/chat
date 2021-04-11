@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {Col, Form, FormGroup, FormControl, FormLabel} from "react-bootstrap";
 
 const FormElement = props => {
+    console.log(props.error);
     let formControlChildren;
 
     if(props.type === "select" && props.options) {
@@ -18,8 +19,8 @@ const FormElement = props => {
 
 
     return (
-        <FormGroup row>
-            <FormLabel sm={2} for="username">{props.title}</FormLabel>
+        <FormGroup>
+            <FormLabel sm={2} htmlFor={props.name}>{props.title}</FormLabel>
             <Col sm={10}>
                 <FormControl
                     {...props}
@@ -28,14 +29,14 @@ const FormElement = props => {
                     value={props.value}
                     onChange={props.onChange}
                     placeholder={props.placeholder}
-                    invalid={!!props.error}
+                    isInvalid={!!props.error}
                     required={props.required}
                 >
                     {formControlChildren}
                 </FormControl>
                 {
                     props.error ?
-                        <Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">
                             {props.error}
                         </Form.Control.Feedback> : null
                 }

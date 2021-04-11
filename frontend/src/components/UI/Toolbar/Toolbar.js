@@ -3,7 +3,6 @@ import {Container, Nav, Navbar, NavbarBrand} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 import UserMenu from "./Menu/UserMenu";
 import UnauthorizedMenu from "./Menu/UnauthorizedMenu";
-import NavigationItem from "../NavigationItem/NavigationItem";
 
 const Toolbar = ({user, logout}) => {
     return (

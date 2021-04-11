@@ -31,6 +31,7 @@ export const registerUser = (userData) => {
                 dispatch(push('/'));
             }, error => {
                 if(error.response && error.response.data) {
+                    console.log(error.response)
                     dispatch(registerUserError(error.response.data));
                 } else {
                     dispatch(registerUserError({global: "No internet connection"}));
@@ -40,18 +41,17 @@ export const registerUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
-    return dispatch => {
-        return axios.post('/users/sessions', userData)
-            .then(response => {
-                dispatch(loginUserSuccess(response.data));
-                dispatch(push('/'));
-            }, error => {
-                if(error.response && error.response.data) {
-                    dispatch(loginUserError(error.response.data));
+    return async dispatch => {
+        const user = await axios.post('/users/sessions', userData)
+            .catch(e => {
+                if(e.response && e.response.data) {
+                    dispatch(loginUserError(e.response.data));
                 } else {
                     dispatch(loginUserError({global: "No internet connection"}));
                 }
-            })
+            });
+        if(user) dispatch(loginUserSuccess(user));
+        else push("/register");
     }
 };
 

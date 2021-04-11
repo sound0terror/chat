@@ -26,8 +26,8 @@ const store = createStore(rootReducer, persistedState, enhancers);
 axios.interceptors.request.use(config => {
     try {
         config.headers['Authorization'] = store.getState().users.user.token;
-    } catch {
-        return;
+    } catch (e) {
+        console.log(e);
     }
 
     return config;
