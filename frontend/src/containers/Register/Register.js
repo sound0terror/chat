@@ -6,6 +6,7 @@ import {registerUser} from "../../store/actions/userActions";
 
 const Register = () => {
     const [inputs, setInputs] = useState({username: "", password: ""});
+    const [avatar, setAvatar] = useState("");
     const error = useSelector(state => state.users.registerError);
     const dispatch = useDispatch();
 
@@ -17,9 +18,18 @@ const Register = () => {
             error.message.errors && error.message.errors[fieldName] &&
             error.message.errors[fieldName].message;
     }
+    const fileChangeHandler = (e) => {
+        setAvatar(e.target.files[0]);
+    }
     const register = (e) => {
         e.preventDefault();
-        dispatch(registerUser(inputs));
+        const formData = new FormData();
+        formData.append("avatar", avatar);
+        for (let key in inputs) {
+            formData.append(key, inputs[key]);
+        }
+
+        dispatch(registerUser(formData));
     }
     return (
         <>
@@ -42,6 +52,12 @@ const Register = () => {
                     type="password"
                     onChange={inputChangeHandler}
                     error={getFieldError('password')}
+                />
+                <FormElement
+                    title="Avatar"
+                    name="avatar"
+                    type="file"
+                    onChange={fileChangeHandler}
                 />
                 <FormGroup>
                     <Col>

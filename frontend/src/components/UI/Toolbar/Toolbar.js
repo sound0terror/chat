@@ -8,7 +8,7 @@ const Toolbar = ({user, logout}) => {
     return (
         <Navbar bg="dark" variant="dark" className="mb-3">
             <Container>
-                <LinkContainer to="/" exact>
+                <LinkContainer to="/messages" exact>
                     <NavbarBrand>Chat</NavbarBrand>
                 </LinkContainer>
                 <Nav className="ml-auto">

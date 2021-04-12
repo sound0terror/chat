@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import {Col, Form, FormGroup, FormControl, FormLabel} from "react-bootstrap";
 
 const FormElement = props => {
-    console.log(props.error);
     let formControlChildren;
 
     if(props.type === "select" && props.options) {

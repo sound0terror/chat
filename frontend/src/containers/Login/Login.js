@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import FormElement from "../../components/UI/FormElement/FormElement";
 import {Alert, Button, Col, Form, FormGroup} from "react-bootstrap";
 import {loginUser} from "../../store/actions/userActions";
@@ -20,6 +20,9 @@ const Login = () => {
     const logIn = (e) => {
         e.preventDefault();
         dispatch(loginUser(inputs));
+        setTimeout(() => {
+            history.push('/messages');
+        }, 100)
     }
     return (
         <>
